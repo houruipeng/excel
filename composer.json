@@ -9,7 +9,7 @@
             "email": "565792893@qq.com"
         }
     ],
-    "minimum-stability": "dev-master",
+    "minimum-stability": "stable",
     "require": {
         "php":">=7.1.0",
         "phpoffice/phpexcel": "^1.8"
