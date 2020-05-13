@@ -1,0 +1,22 @@
+{
+    "name": "hrp/my-excel",
+    "description": "excel import export",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "houruipeng",
+            "email": "565792893@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php":">=7.1.0",
+        "phpoffice/phpexcel": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "hrp\\": "src/"
+        }
+    }
+}
