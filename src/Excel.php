@@ -35,7 +35,7 @@ class Excel{
 			$rowData = $sheet->rangeToArray('A'.$row.':'.$highestColumn.$row, null, true, false);
 			if($rowData[0] > 0){
 				foreach($rowData as $key => $value){
-					array_pop($value);
+					//array_pop($value);
 					$excelData[] = array_combine($keys, array_filter($value));
 				}
 			}
