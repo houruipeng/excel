@@ -46,13 +46,17 @@ class Excel{
 	/**
 	 * @param array  $excelHeader id=>'主键',name=>'昵称'
 	 * @param array  $xlsData 需要导出的数据
+	 * @param bool   $is_export true 直接输出 false返回下载路径
 	 * @param string $exportPath 保存的路径
 	 * @param string $fileName
 	 * @return string 导出的文件名
 	 * @throws \PHPExcel_Exception
+	 * @throws \PHPExcel_Reader_Exception
 	 * @throws \PHPExcel_Writer_Exception
 	 */
-	public function exportToExcel(array $excelHeader, array $xlsData, string $exportPath = '.', $fileName = ''){
+	public function exportToExcel(array $excelHeader, array $xlsData, $is_export=false, string $exportPath = '.',
+		$fileName =
+''){
 		error_reporting(E_ALL);
 		ini_set('display_errors', true);
 		ini_set('display_startup_errors', true);
@@ -83,6 +87,18 @@ class Excel{
 		}
 		$fileName = $fileName ?? md5(date('YmdHis'));
 		$outfile = $exportPath.DIRECTORY_SEPARATOR.$fileName.'.xlsx';
+
+		if($is_export){
+			ob_end_clean();
+			header('Content-Type: application/force-download');
+			header('Content-Type: application/octet-stream');
+			header('Content-Type: application/download');
+			header('Content-Disposition:inline;filename="' . $outfile . '.xlsx"');
+			header('Content-Transfer-Encoding: binary');
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Pragma: no-cache');
+			\PHPExcel_IOFactory::createWriter($objExcel, 'Excel5')->save('php://output');
+		}
 
 		(new \PHPExcel_Writer_Excel2007($objExcel))->save($outfile);
 		chmod($outfile, 0755);
