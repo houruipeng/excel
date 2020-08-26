@@ -93,7 +93,7 @@ class Excel{
 			header('Content-Type: application/force-download');
 			header('Content-Type: application/octet-stream');
 			header('Content-Type: application/download');
-			header('Content-Disposition:inline;filename="' . $outfile . '.xlsx"');
+			header('Content-Disposition:inline;filename="' . $fileName . '.xlsx"');
 			header('Content-Transfer-Encoding: binary');
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			header('Pragma: no-cache');
