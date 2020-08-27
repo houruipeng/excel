@@ -54,9 +54,8 @@ class Excel{
 	 * @throws \PHPExcel_Reader_Exception
 	 * @throws \PHPExcel_Writer_Exception
 	 */
-	public function exportToExcel(array $excelHeader, array $xlsData, $is_export=false, string $exportPath = '.',
-		$fileName =
-''){
+	public function exportToExcel(array $excelHeader, array $xlsData, $is_export = false, string $exportPath = '.', $fileName =
+	''){
 		error_reporting(E_ALL);
 		ini_set('display_errors', true);
 		ini_set('display_startup_errors', true);
@@ -85,15 +84,15 @@ class Excel{
 			// 表格高度
 			$objActSheet->getRowDimension($k)->setRowHeight(20);
 		}
-		$fileName = $fileName ?? md5(date('YmdHis'));
-		$outfile = $exportPath.DIRECTORY_SEPARATOR.$fileName.'.xlsx';
+		$fileName = ($fileName ? $fileName : date('YmdHis')).'xlsx';
+		$outfile = $exportPath.DIRECTORY_SEPARATOR.$fileName;
 
 		if($is_export){
 			ob_end_clean();
 			header('Content-Type: application/force-download');
 			header('Content-Type: application/octet-stream');
 			header('Content-Type: application/download');
-			header('Content-Disposition:inline;filename="' . $fileName . '.xlsx"');
+			header('Content-Disposition:inline;filename="'.$fileName.'"');
 			header('Content-Transfer-Encoding: binary');
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			header('Pragma: no-cache');

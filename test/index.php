@@ -27,7 +27,7 @@ $outData = [
 $excelHeader = ['id' => '编号', 'name' => '名称'];
 $exportDir = '.';
 $fileName = '123';
-$res = $excel->exportToExcel($excelHeader, $outData, $exportDir, $fileName);
+$res = $excel->exportToExcel($excelHeader, $outData,false, $exportDir, $fileName);
 // .\123.xlsx
 print_r($res);
 
